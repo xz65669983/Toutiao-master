@@ -34,10 +34,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private static final String TAG = "MainActivity";
     private static final String POSITION = "position";
     private static final String SELECT_ITEM = "bottomNavigationSelectItem";
-    private static final int FRAGMENT_NEWS = 0;
-    private static final int FRAGMENT_PHOTO = 1;
-    private static final int FRAGMENT_VIDEO = 2;
-    private static final int FRAGMENT_MEDIA = 3;
+    private static final int FRAGMENT_HOMEPAGE = 0;
+    private static final int FRAGMENT_MAKE_FRIEND= 1;
+    private static final int FRAGMENT_ACTIVITY = 2;
+    private static final int FRAGMENT_PERSONAL_CENTER = 3;
     private NewsTabLayout newsTabLayout;
     private PhotoTabLayout photoTabLayout;
     private VideoTabLayout videoTabLayout;
@@ -65,7 +65,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             showFragment(savedInstanceState.getInt(POSITION));
             bottom_navigation.setSelectedItemId(savedInstanceState.getInt(SELECT_ITEM));
         } else {
-            showFragment(FRAGMENT_NEWS);
+            showFragment(FRAGMENT_HOMEPAGE);
         }
 
         if (SettingUtil.getInstance().getIsFirstTime()) {
@@ -144,19 +144,19 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.action_news:
-                        showFragment(FRAGMENT_NEWS);
-                        doubleClick(FRAGMENT_NEWS);
+                        showFragment(FRAGMENT_HOMEPAGE);
+                        doubleClick(FRAGMENT_HOMEPAGE);
                         break;
                     case R.id.action_photo:
-                        showFragment(FRAGMENT_PHOTO);
-                        doubleClick(FRAGMENT_PHOTO);
+                        showFragment(FRAGMENT_MAKE_FRIEND);
+                        doubleClick(FRAGMENT_MAKE_FRIEND);
                         break;
                     case R.id.action_video:
-                        showFragment(FRAGMENT_VIDEO);
-                        doubleClick(FRAGMENT_VIDEO);
+                        showFragment(FRAGMENT_ACTIVITY);
+                        doubleClick(FRAGMENT_ACTIVITY);
                         break;
                     case R.id.action_media:
-                        showFragment(FRAGMENT_MEDIA);
+                        showFragment(FRAGMENT_PERSONAL_CENTER);
                         break;
                 }
                 return true;
@@ -177,13 +177,13 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         long secondClickTime = System.currentTimeMillis();
         if ((secondClickTime - firstClickTime < 500)) {
             switch (index) {
-                case FRAGMENT_NEWS:
+                case FRAGMENT_HOMEPAGE:
                     newsTabLayout.onDoubleClick();
                     break;
-                case FRAGMENT_PHOTO:
+                case FRAGMENT_MAKE_FRIEND:
                     photoTabLayout.onDoubleClick();
                     break;
-                case FRAGMENT_VIDEO:
+                case FRAGMENT_ACTIVITY:
                     videoTabLayout.onDoubleClick();
                     break;
             }
@@ -197,7 +197,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         hideFragment(ft);
         position = index;
         switch (index) {
-            case FRAGMENT_NEWS:
+            case FRAGMENT_HOMEPAGE:
                 toolbar.setTitle(R.string.app_name);
                 /**
                  * 如果Fragment为空，就新建一个实例
@@ -211,8 +211,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 }
                 break;
 
-            case FRAGMENT_PHOTO:
-                toolbar.setTitle(R.string.title_photo);
+            case FRAGMENT_MAKE_FRIEND:
+                toolbar.setTitle(R.string.title_makefriend);
                 if (photoTabLayout == null) {
                     photoTabLayout = PhotoTabLayout.getInstance();
                     ft.add(R.id.container, photoTabLayout, PhotoTabLayout.class.getName());
@@ -221,8 +221,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 }
                 break;
 
-            case FRAGMENT_VIDEO:
-                toolbar.setTitle(getString(R.string.title_video));
+            case FRAGMENT_ACTIVITY:
+                toolbar.setTitle(getString(R.string.title_activity));
                 if (videoTabLayout == null) {
                     videoTabLayout = VideoTabLayout.getInstance();
                     ft.add(R.id.container, videoTabLayout, VideoTabLayout.class.getName());
@@ -231,8 +231,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 }
                 break;
 
-            case FRAGMENT_MEDIA:
-                toolbar.setTitle(getString(R.string.title_media));
+            case FRAGMENT_PERSONAL_CENTER:
+                toolbar.setTitle(getString(R.string.title_personal_center));
                 if (mediaChannelView == null) {
                     mediaChannelView = MediaChannelView.getInstance();
                     ft.add(R.id.container, mediaChannelView, MediaChannelView.class.getName());

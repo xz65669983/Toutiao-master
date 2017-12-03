@@ -43,10 +43,10 @@
     <string name="action_open_media_home">查看此头条号主页</string>
 
     <!-- Title -->
-    <string name="title_news">新闻</string>
+    <string name="title_homepage">首页</string>
     <string name="title_other">其他</string>
-    <string name="title_photo">图片</string>
-    <string name="title_video">视频</string>
+    <string name="title_makefriend">交友</string>
+    <string name="title_activity">活动</string>
     <string name="title_video_content">视频播放</string>
     <string name="title_settings">设置</string>
     <string name="title_news_content">新闻内容</string>
@@ -57,7 +57,7 @@
     <string name="title_item_drag">拖拽排序</string>
     <string name="title_comment">评论</string>
     <string name="title_about">关于</string>
-    <string name="title_media">头条号</string>
+    <string name="title_personal_center">个人中心</string>
     <string name="title_wenda">问答</string>
     <string name="title_wenda_detail">回答</string>
 
