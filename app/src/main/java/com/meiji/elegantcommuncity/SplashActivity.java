@@ -9,7 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.LinearLayout;
 
 /**
- * Created by Meiji on 2017/11/11.
+ * Created by zzc on 2017/11/11.
  */
 
 public class SplashActivity extends AppCompatActivity {

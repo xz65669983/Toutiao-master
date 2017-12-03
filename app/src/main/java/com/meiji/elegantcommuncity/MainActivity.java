@@ -20,7 +20,7 @@ import android.widget.Toast;
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetSequence;
 import com.meiji.elegantcommuncity.module.base.BaseActivity;
-import com.meiji.elegantcommuncity.module.media.channel.MediaChannelView;
+import com.meiji.elegantcommuncity.module.media.channel.PersonalCenterFragment;
 import com.meiji.elegantcommuncity.module.news.NewsTabLayout;
 import com.meiji.elegantcommuncity.module.photo.PhotoTabLayout;
 import com.meiji.elegantcommuncity.module.search.SearchActivity;
@@ -41,7 +41,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private NewsTabLayout newsTabLayout;
     private PhotoTabLayout photoTabLayout;
     private VideoTabLayout videoTabLayout;
-    private MediaChannelView mediaChannelView;
+    private PersonalCenterFragment personalCenterFragment;
     private Toolbar toolbar;
     private BottomNavigationView bottom_navigation;
     private long exitTime = 0;
@@ -49,6 +49,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private int position;
     private NavigationView nav_view;
     private DrawerLayout drawer_layout;
+//是否登录
+    public boolean islogin=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +62,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             newsTabLayout = (NewsTabLayout) getSupportFragmentManager().findFragmentByTag(NewsTabLayout.class.getName());
             photoTabLayout = (PhotoTabLayout) getSupportFragmentManager().findFragmentByTag(PhotoTabLayout.class.getName());
             videoTabLayout = (VideoTabLayout) getSupportFragmentManager().findFragmentByTag(VideoTabLayout.class.getName());
-            mediaChannelView = (MediaChannelView) getSupportFragmentManager().findFragmentByTag(MediaChannelView.class.getName());
+            personalCenterFragment = (PersonalCenterFragment) getSupportFragmentManager().findFragmentByTag(PersonalCenterFragment.class.getName());
             // 恢复 recreate 前的位置
             showFragment(savedInstanceState.getInt(POSITION));
             bottom_navigation.setSelectedItemId(savedInstanceState.getInt(SELECT_ITEM));
@@ -233,11 +235,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
             case FRAGMENT_PERSONAL_CENTER:
                 toolbar.setTitle(getString(R.string.title_personal_center));
-                if (mediaChannelView == null) {
-                    mediaChannelView = MediaChannelView.getInstance();
-                    ft.add(R.id.container, mediaChannelView, MediaChannelView.class.getName());
+                if (personalCenterFragment == null) {
+                    personalCenterFragment = PersonalCenterFragment.getInstance();
+                    ft.add(R.id.container, personalCenterFragment, PersonalCenterFragment.class.getName());
                 } else {
-                    ft.show(mediaChannelView);
+                    ft.show(personalCenterFragment);
                 }
         }
 
@@ -255,8 +257,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         if (videoTabLayout != null) {
             ft.hide(videoTabLayout);
         }
-        if (mediaChannelView != null) {
-            ft.hide(mediaChannelView);
+        if (personalCenterFragment != null) {
+            ft.hide(personalCenterFragment);
         }
     }
 
