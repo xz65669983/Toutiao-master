@@ -35,7 +35,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
-    <com.example.administrator.view.SPMoreImageView
+    <com.meiji.elegantcommuncity.view.SPMoreImageView
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:id="@+id/head_mimgv"

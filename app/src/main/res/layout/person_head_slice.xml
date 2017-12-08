@@ -13,7 +13,7 @@
         android:layout_margin="@dimen/person_head_relayout_padding"
         android:orientation="vertical">
       
-	    <com.example.administrator.view.SPMoreImageView
+	    <com.meiji.elegantcommuncity.view.SPMoreImageView
 	        android:id="@+id/head_mimgv"
             android:layout_width="70dip"
             android:layout_height="70dip"

@@ -113,7 +113,7 @@ public class PersonalCenterFragment extends RxFragment  {
     @Override
     public void onResume() {
         super.onResume();
-        swipeRefreshLayout.setColorSchemeColors(SettingUtil.getInstance().getColor());
+        //swipeRefreshLayout.setColorSchemeColors(SettingUtil.getInstance().getColor());
         //setAdapter();
     }
 

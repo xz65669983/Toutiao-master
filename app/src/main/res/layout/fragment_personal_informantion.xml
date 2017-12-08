@@ -51,7 +51,7 @@
             <View  style="@style/separator_line"/>
 
             <!-- 我的收藏 -->
-            <com.example.administrator.view.SPArrowRowView
+            <com.meiji.elegantcommuncity.view.SPArrowRowView
                 android:id="@+id/person_collect_aview"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_row"
@@ -70,7 +70,7 @@
 
 
             <!-- 优惠券 -->
-            <com.example.administrator.view.SPArrowRowView
+            <com.meiji.elegantcommuncity.view.SPArrowRowView
                 android:id="@+id/person_coupon_aview"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_row"
