@@ -109,7 +109,7 @@
 
         <activity android:name="com.meiji.elegantcommuncity.FirstComingActvity"
             android:configChanges="orientation|screenSize|uiMode"
-            android:theme="@style/AppTheme.NoActionBar.Slidable"/>
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
 
 <!--zzc-->
         <activity
@@ -124,7 +124,10 @@
 
         <activity android:name=".activity.SignupActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
-
+        <activity android:name=".activity.IdentifyIDActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity android:name=".activity.CertificateActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />Z
 
         <provider
             android:name="android.support.v4.content.FileProvider"

@@ -46,12 +46,12 @@ import static android.R.attr.type;
 
 
 public class CertificateActivity extends AppCompatActivity {
-    Handler handler=new Handler(){
+    Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            switch(msg.what){
+            switch (msg.what) {
                 case 0:
-                   jumpnextactivity();
+                    jumpnextactivity();
                     Toast.makeText(CertificateActivity.this, "上传成功", Toast.LENGTH_SHORT).show();
                     break;
             }
@@ -61,16 +61,19 @@ public class CertificateActivity extends AppCompatActivity {
     ImageView iv_certificate_front;
     @BindView(R.id.iv_certifiicate_back)
     ImageView iv_certifiicate_back;
+
     @OnClick(R.id.btn_back)
-    public  void back(){
+    public void back() {
         finish();
     }
+
     @OnClick(R.id.jump)
-    public  void jump(){
+    public void jump() {
         jumpnextactivity();
     }
+
     @OnClick(R.id.bt_sure_upload)
-    public  void sureAndUpload(){
+    public void sureAndUpload() {
         //创建ProgressDialog对象
         ProgressDialog progressDialog = new ProgressDialog(
                 CertificateActivity.this);
@@ -92,15 +95,16 @@ public class CertificateActivity extends AppCompatActivity {
 //        new ProgressDialogButtonListener());
 //        让ProgressDialog显示
         progressDialog.show();
-        handler.sendEmptyMessageDelayed(0,2000);
+        handler.sendEmptyMessageDelayed(0, 2000);
     }
+
     private Uri imageUri;
 
     public static final int TAKE_PHOTO_FRONT = 1;
     public static final int TAKE_PHOTO_BACK = 2;
 
     public static final int CHOOSE_PHOTO_FRONT = 3;
-    public static final int CHOOSE_PHOTO_BACK  = 4;
+    public static final int CHOOSE_PHOTO_BACK = 4;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -108,29 +112,30 @@ public class CertificateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_certificate);
         ButterKnife.bind(this);
 
-      Mylistener mylistener1=new Mylistener(1);
-        Mylistener mylistener2=new Mylistener(2);
+        Mylistener mylistener1 = new Mylistener(1);
+        Mylistener mylistener2 = new Mylistener(2);
         iv_certificate_front.setOnClickListener(mylistener1);
         iv_certifiicate_back.setOnClickListener(mylistener2);
 
 
-
     }
 
-    class Mylistener implements View.OnClickListener{
+    class Mylistener implements View.OnClickListener {
         //1为正面 2为反面
         int type;
-        public Mylistener(int type){
-            this.type=type;
+
+        public Mylistener(int type) {
+            this.type = type;
         }
+
         @Override
         public void onClick(View v) {
-            AlertDialog.Builder builder=new AlertDialog.Builder(CertificateActivity.this);
-            final String[] Items={"拍照","从手机中选取"};
+            AlertDialog.Builder builder = new AlertDialog.Builder(CertificateActivity.this);
+            final String[] Items = {"拍照", "从手机中选取"};
             builder.setItems(Items, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    switch (i){
+                    switch (i) {
                         //拍照
                         case 0:
                             File outputImage = new File(getExternalCacheDir(), "output_image.jpg");
@@ -150,13 +155,13 @@ public class CertificateActivity extends AppCompatActivity {
                             // 启动相机程序
                             Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
                             intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-                            startActivityForResult(intent, type==1?TAKE_PHOTO_FRONT:TAKE_PHOTO_BACK);
+                            startActivityForResult(intent, type == 1 ? TAKE_PHOTO_FRONT : TAKE_PHOTO_BACK);
                             break;
 
                         //从照片中获取
                         case 1:
                             if (ContextCompat.checkSelfPermission(CertificateActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                                ActivityCompat.requestPermissions(CertificateActivity.this, new String[]{ Manifest.permission. WRITE_EXTERNAL_STORAGE }, 1);
+                                ActivityCompat.requestPermissions(CertificateActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
                             } else {
                                 openAlbum(type);
                             }
@@ -167,19 +172,18 @@ public class CertificateActivity extends AppCompatActivity {
                 }
             });
             builder.setCancelable(true);
-            AlertDialog dialog=builder.create();
+            AlertDialog dialog = builder.create();
             dialog.show();
         }
     }
 
 
-
-
     private void openAlbum(int type) {
         Intent intent = new Intent("android.intent.action.GET_CONTENT");
         intent.setType("image/*");
-        startActivityForResult(intent, type==1?CHOOSE_PHOTO_FRONT:CHOOSE_PHOTO_BACK); // 打开相册
+        startActivityForResult(intent, type == 1 ? CHOOSE_PHOTO_FRONT : CHOOSE_PHOTO_BACK); // 打开相册
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         switch (requestCode) {
@@ -193,6 +197,7 @@ public class CertificateActivity extends AppCompatActivity {
             default:
         }
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
@@ -224,10 +229,10 @@ public class CertificateActivity extends AppCompatActivity {
                     // 判断手机系统版本号
                     if (Build.VERSION.SDK_INT >= 19) {
                         // 4.4及以上系统使用这个方法处理图片
-                        handleImageOnKitKat(data,1);
+                        handleImageOnKitKat(data, 1);
                     } else {
                         // 4.4以下系统使用这个方法处理图片
-                        handleImageBeforeKitKat(data,1);
+                        handleImageBeforeKitKat(data, 1);
                     }
                 }
                 break;
@@ -236,10 +241,10 @@ public class CertificateActivity extends AppCompatActivity {
                     // 判断手机系统版本号
                     if (Build.VERSION.SDK_INT >= 19) {
                         // 4.4及以上系统使用这个方法处理图片
-                        handleImageOnKitKat(data,2);
+                        handleImageOnKitKat(data, 2);
                     } else {
                         // 4.4以下系统使用这个方法处理图片
-                        handleImageBeforeKitKat(data,2);
+                        handleImageBeforeKitKat(data, 2);
                     }
                 }
 
@@ -251,14 +256,14 @@ public class CertificateActivity extends AppCompatActivity {
     }
 
     @TargetApi(19)
-    private void handleImageOnKitKat(Intent data , int type) {
+    private void handleImageOnKitKat(Intent data, int type) {
         String imagePath = null;
         Uri uri = data.getData();
         Log.d("TAG", "handleImageOnKitKat: uri is " + uri);
         if (DocumentsContract.isDocumentUri(this, uri)) {
             // 如果是document类型的Uri，则通过document id处理
             String docId = DocumentsContract.getDocumentId(uri);
-            if("com.android.providers.media.documents".equals(uri.getAuthority())) {
+            if ("com.android.providers.media.documents".equals(uri.getAuthority())) {
                 String id = docId.split(":")[1]; // 解析出数字格式的id
                 String selection = MediaStore.Images.Media._ID + "=" + id;
                 imagePath = getImagePath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, selection);
@@ -273,13 +278,13 @@ public class CertificateActivity extends AppCompatActivity {
             // 如果是file类型的Uri，直接获取图片路径即可
             imagePath = uri.getPath();
         }
-        displayImage(imagePath,type); // 根据图片路径显示图片
+        displayImage(imagePath, type); // 根据图片路径显示图片
     }
 
     private void handleImageBeforeKitKat(Intent data, int type) {
         Uri uri = data.getData();
         String imagePath = getImagePath(uri, null);
-        displayImage(imagePath,type);
+        displayImage(imagePath, type);
     }
 
     private String getImagePath(Uri uri, String selection) {
@@ -295,10 +300,10 @@ public class CertificateActivity extends AppCompatActivity {
         return path;
     }
 
-    private void displayImage(String imagePath , int type ) {
+    private void displayImage(String imagePath, int type) {
         if (imagePath != null) {
             Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
-            switch (type){
+            switch (type) {
                 case 1:
                     iv_certificate_front.setImageBitmap(bitmap);
                     break;
@@ -314,8 +319,8 @@ public class CertificateActivity extends AppCompatActivity {
         }
     }
 
-    public void jumpnextactivity(){
-       Intent intent=new Intent(this,MainActivity.class);
+    public void jumpnextactivity() {
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }

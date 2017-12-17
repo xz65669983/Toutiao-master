@@ -81,6 +81,7 @@ public class IdentifyIDActivity extends AppCompatActivity {
 
         Intent intent=new Intent(this,CertificateActivity.class);
         startActivity(intent);
+        finish();
     }
     @OnClick(R.id.btn_back)
     public  void back(){
