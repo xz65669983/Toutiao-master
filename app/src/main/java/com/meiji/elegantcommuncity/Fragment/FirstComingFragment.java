@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 
+import com.bumptech.glide.Glide;
 import com.meiji.elegantcommuncity.InitApp;
 import com.meiji.elegantcommuncity.R;
 import com.squareup.picasso.Picasso;
@@ -41,14 +42,14 @@ public class FirstComingFragment extends Fragment {
         ButterKnife.bind(this,view);
         switch (postion){
             case 0:
-                Picasso.with(InitApp.AppContext).load(R.drawable.firstcoming1).into(iv_first_coming);
+                Glide.with(InitApp.AppContext).load(R.drawable.firstcoming1).into(iv_first_coming);
                 break;
 
             case 1:
-                Picasso.with(InitApp.AppContext).load(R.drawable.firstcoming2).into(iv_first_coming);
+                Glide.with(InitApp.AppContext).load(R.drawable.firstcoming2).into(iv_first_coming);
                 break;
             case 2:
-                Picasso.with(InitApp.AppContext).load(R.drawable.firstcoming3).into(iv_first_coming);
+                Glide.with(InitApp.AppContext).load(R.drawable.firstcoming3).into(iv_first_coming);
                 break;
 
         }

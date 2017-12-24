@@ -61,7 +61,6 @@ public class FirstComingActvity extends AppCompatActivity {
 
                // Log.i(TAG,"当前页为："+currentpage);
                 if(currentpage==2){
-                    Log.i(TAG,"好的我进来了");
                     switch (event.getAction()){
                         case MotionEvent.ACTION_DOWN:
                             startX=event.getX();
@@ -75,7 +74,6 @@ public class FirstComingActvity extends AppCompatActivity {
                             Point size = new Point();
                             windowManager.getDefaultDisplay().getSize(size);
                             int width=size.x;
-                            Log.i(TAG,"屏幕1/4的宽为："+width/4+"startx:"+startX+"endx："+endX);
                             //首先要确定的是，是否到了最后一页，然后判断是否向左滑动，并且滑动距离是否符合，我这里的判断距离是屏幕宽度的4分之一（这里可以适当控制）
                             if(startX-endX>0&&startX-endX>=(width/4)){
                                 goToMainActivity();
