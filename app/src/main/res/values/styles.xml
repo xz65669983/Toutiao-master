@@ -106,6 +106,12 @@
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">1.0px</item>
     </style>
+
+    <style name="vertical_separator_line">
+        <item name="android:background">#ffe0e0e0</item>
+        <item name="android:layout_width">1.0px</item>
+        <item name="android:layout_height">fill_parent</item>
+    </style>
     <!-- 小号 , 黑色 -->
     <style name="textStyle.Small.black" parent="textStyle.Small">
         <item name="android:textColor">@android:color/black</item>

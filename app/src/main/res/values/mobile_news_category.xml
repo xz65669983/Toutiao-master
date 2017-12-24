@@ -3,15 +3,15 @@
 
     <!--需要单独处理的 视频 / 段子 / 问答 -->
     <string-array name="mobile_news_name">
-        <item>推荐</item>
-        <item>热点</item>
-        <item>视频</item>
-        <item>社会</item>
-        <item>娱乐</item>
-        <item>科技</item>
+        <item>预备班</item>
+        <item>本科生涯</item>
+        <item>海派同学会</item>
+        <item>求职招聘</item>
+        <item>创新成果</item>
+        <item>创业先锋</item>
 
-        <item>问答</item>
-        <item>汽车</item>
+        <item>新闻资讯</item>
+        <item>名优路演</item>
         <item>财经</item>
         <item>军事</item>
         <item>体育</item>

@@ -9,6 +9,9 @@ import com.meiji.elegantcommuncity.R;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
 
 /**
  * Created by Administrator on 2017/7/30.
@@ -29,5 +32,15 @@ public class UserDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spuser_details);
         ButterKnife.bind(this);
+
+        Observable<Object> observable = Observable.create(new ObservableOnSubscribe<Object>() {
+            @Override
+            public void subscribe(ObservableEmitter<Object> e) throws Exception {
+
+            }
+        });
+
+
+
     }
 }
