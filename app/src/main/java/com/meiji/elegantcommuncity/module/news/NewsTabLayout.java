@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +30,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import io.reactivex.Observable;
 import io.reactivex.functions.Consumer;
@@ -121,7 +123,7 @@ public class NewsTabLayout extends Fragment {
 
             Fragment fragment = null;
             String channelId = bean.getChannelId();
-
+            Log.i(TAG,"zzc:"+channelId);
             switch (channelId) {
                 case "essay_joke":
                     if (map.containsKey(channelId)) {

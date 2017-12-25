@@ -67,10 +67,12 @@ public class VideoTabLayout extends Fragment {
     }
 
     private void initData() {
-        for (int i = 0; i < categoryId.length; i++) {
-            Fragment fragment = VideoArticleView.newInstance(categoryId[i]);
+
+            Fragment fragment = VideoArticleView.newInstance(categoryId[0]);
             fragmentList.add(fragment);
-        }
+            Fragment issueAvtivityFragment =new IssueAvtivityFragment();
+            fragmentList.add(issueAvtivityFragment);
+
         adapter = new BasePagerAdapter(getChildFragmentManager(), fragmentList, categoryName);
         viewPager.setAdapter(adapter);
     }

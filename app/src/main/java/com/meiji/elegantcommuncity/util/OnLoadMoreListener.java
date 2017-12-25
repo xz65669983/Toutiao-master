@@ -4,12 +4,15 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
+
+
 /**
  * Created by Meiji on 2017/6/8.
  */
 
 public abstract class OnLoadMoreListener extends RecyclerView.OnScrollListener {
 
+    private static final String TAG ="OnLoadMoreListener" ;
     private LinearLayoutManager layoutManager;
     private int itemCount, lastPosition, lastItemCount;
 
@@ -17,15 +20,18 @@ public abstract class OnLoadMoreListener extends RecyclerView.OnScrollListener {
 
     @Override
     public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+
         if (recyclerView.getLayoutManager() instanceof LinearLayoutManager) {
             layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
-
             itemCount = layoutManager.getItemCount();
             lastPosition = layoutManager.findLastCompletelyVisibleItemPosition();
         } else {
             Log.e("OnLoadMoreListener", "The OnLoadMoreListener only support LinearLayoutManager");
             return;
         }
+        Log.e(TAG,"lastItemCount:"+lastItemCount);
+        Log.e(TAG,"itemCount:"+itemCount);
+        Log.e(TAG,"lastPosition"+lastPosition);
 
         if (lastItemCount != itemCount && lastPosition == itemCount - 1) {
             lastItemCount = itemCount;
