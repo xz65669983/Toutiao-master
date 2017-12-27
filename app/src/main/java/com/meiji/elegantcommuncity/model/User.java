@@ -14,27 +14,10 @@ public class User {
     private String email;
     //后台接口非必填字段
     private String userName;
-    private int male;  //性别
+    private Integer male;  //性别
     //无用字段
-    private int  verifyType;
-    private int  userGrade;
-
-
-    public int getVerifyType() {
-        return verifyType;
-    }
-
-    public void setVerifyType(int verifyType) {
-        this.verifyType = verifyType;
-    }
-
-    public int getUserGrade() {
-        return userGrade;
-    }
-
-    public void setUserGrade(int userGrade) {
-        this.userGrade = userGrade;
-    }
+    private Integer  verifyType;
+    private Integer  userGrade;
 
     public String getUserAcc() {
         return userAcc;
@@ -84,11 +67,27 @@ public class User {
         this.userName = userName;
     }
 
-    public int getMale() {
+    public Integer getMale() {
         return male;
     }
 
-    public void setMale(int male) {
+    public void setMale(Integer male) {
         this.male = male;
+    }
+
+    public Integer getVerifyType() {
+        return verifyType;
+    }
+
+    public void setVerifyType(Integer verifyType) {
+        this.verifyType = verifyType;
+    }
+
+    public Integer getUserGrade() {
+        return userGrade;
+    }
+
+    public void setUserGrade(Integer userGrade) {
+        this.userGrade = userGrade;
     }
 }

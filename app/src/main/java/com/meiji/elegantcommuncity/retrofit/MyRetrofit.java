@@ -14,9 +14,10 @@ public class MyRetrofit {
     public static synchronized Retrofit getGsonRetrofitInstance(){
         if(retrofit==null){
              retrofit = new Retrofit.Builder()
-                    .baseUrl("http://kikipar.imwork.net:29296/")
+                   // .baseUrl("http://kikipar.imwork.net:29296/")
+                     .baseUrl("http://121.43.175.88:9080/")
                      .addConverterFactory(GsonConverterFactory.create())
-                    .build();
+                     .build();
         }
         return retrofit;
     }

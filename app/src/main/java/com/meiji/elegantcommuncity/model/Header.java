@@ -8,10 +8,10 @@ import com.meiji.elegantcommuncity.util.Uuid;
  */
 
 public class Header {
-    private String responseId;
+    private String requestId;
     private String conversationId;
     public Header(){
-        responseId= Uuid.getUUID();
+        requestId = Uuid.getUUID();
         conversationId=Uuid.getUUID();
     }
 }

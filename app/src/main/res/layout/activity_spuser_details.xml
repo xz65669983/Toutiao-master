@@ -258,6 +258,16 @@
         android:layout_marginTop="20dip"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/log_out"
+        android:id="@+id/btn_logout"
+        style="@style/button_style"
+        android:layout_below="@+id/btn_save"
+        android:layout_marginTop="20dip"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
 
 
 </RelativeLayout>

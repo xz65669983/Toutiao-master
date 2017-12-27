@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">全球顶尖大学书友会</string>
 
-    <string name="main_name"> 优雅社区，很高兴认识您！</string>
+    <string name="main_name"> 优雅社区，欢迎您！</string>
 
     <!-- Example General com.meiji.toutiao.settings -->
     <string name="switch_photo_mode">无图模式</string>
@@ -157,6 +157,7 @@
     <string name="user_city">所在城市 </string>
     <string name="revise_password">修改密码</string>
     <string name="user_save">保存</string>
+    <string name="log_out">退出登录</string>
     <string-array name="user_sex_name">
         <item>保密</item>
         <item>男</item>

@@ -2,6 +2,7 @@ package com.meiji.elegantcommuncity.retrofit;
 
 
 import com.meiji.elegantcommuncity.model.RegisterModel;
+import com.meiji.elegantcommuncity.model.User;
 
 import java.util.List;
 
@@ -20,14 +21,17 @@ import retrofit2.http.Part;
  */
 
 public interface UserService {
-    @POST("elegant/greeting")
+    @POST("elegant/user/login")
     @Headers({"Content-Type: application/json","Accept: application/json"})//需要添加头
-    Call<ResponseBody> login(@Body RequestBody requestBody);
+    Call<ResponseBody> login(@Body User user);
 
-    @POST("user/register")
+    @POST("elegant/user/register")
     @Headers({"Content-Type: application/json","Accept: application/json"})//需要添加头
     Call<ResponseBody> signUp(@Body RegisterModel registerModel);
 
+    @POST("elegant/user/logout")
+    @Headers({"Content-Type: application/json","Accept: application/json"})//需要添加头
+    Call<ResponseBody> logOut(@Body User user);
     @POST("fileUpload")
     @Multipart
     Call<ResponseBody> upLoadCertificateId(@Part List<MultipartBody.Part> partList);
