@@ -32,7 +32,7 @@ public interface UserService {
     @POST("elegant/user/logout")
     @Headers({"Content-Type: application/json","Accept: application/json"})//需要添加头
     Call<ResponseBody> logOut(@Body User user);
-    @POST("fileUpload")
+    @POST("elegant/multiFileUpload")
     @Multipart
     Call<ResponseBody> upLoadCertificateId(@Part List<MultipartBody.Part> partList);
 

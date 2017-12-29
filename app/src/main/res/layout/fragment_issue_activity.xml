@@ -21,6 +21,8 @@
             android:textSize="@dimen/font_size_normal" />
 
         <EditText
+            android:textSize="@dimen/font_size_normal"
+            android:background="@null"
             android:layout_width="250dp"
             android:layout_height="match_parent"
             android:layout_alignParentTop="true"
@@ -61,6 +63,8 @@
             android:textSize="@dimen/font_size_normal" />
 
         <EditText
+            android:textSize="@dimen/font_size_normal"
+            android:background="@null"
             android:id="@+id/start_time"
             android:layout_width="140dp"
             android:layout_height="match_parent"
@@ -85,6 +89,8 @@
             android:textSize="@dimen/font_size_normal" />
 
         <EditText
+
+            android:background="@null"
             android:layout_width="140dp"
             android:layout_height="match_parent"
             android:layout_alignParentTop="true"
@@ -124,6 +130,7 @@
         android:layout_width="match_parent"
         android:layout_height="150dp">
         <EditText
+            android:background="@null"
             android:layout_margin="@dimen/margin_space"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -138,12 +145,15 @@
         android:layout_height="@dimen/height_row"
         android:orientation="horizontal">
         <TextView
+            android:background="@null"
             android:layout_marginLeft="@dimen/margin_space"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:text="咨询电话"/>
         <EditText
+            android:textSize="@dimen/font_size_normal"
+            android:background="@null"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="right|center_vertical"

@@ -84,8 +84,8 @@ public class SignupActivity extends AppCompatActivity {
                     Log.i(TAG, "注册返回数据:"+respond);
                     JsonElement je = new JsonParser().parse(respond);
                     String resultCode = je.getAsJsonObject().get("resultCode").toString();
-
-                    if("0000".contentEquals(resultCode)){
+                    Log.i(TAG, "resultCode:"+resultCode);
+                    if(resultCode.contains("0000")){
                         Toast.makeText(SignupActivity.this,"注册成功",Toast.LENGTH_LONG).show();
                         Intent intent=new Intent(SignupActivity.this,IdentifyIDActivity.class);
                         startActivity(intent);

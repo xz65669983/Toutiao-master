@@ -70,7 +70,8 @@ public class IdentifyIDActivity extends AppCompatActivity {
     @BindView(R.id.iv_id_back)ImageView iv_id_back;
     @BindView(R.id.iv_id_front)ImageView iv_id_front;
 
-    private Uri imageUri;
+    private Uri imageUri1;
+    private Uri imageUri2;
     public static final int TAKE_PHOTO_FRONT = 1;
     public static final int TAKE_PHOTO_BACK = 2;
 
@@ -128,8 +129,8 @@ public class IdentifyIDActivity extends AppCompatActivity {
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
-        File file = new File(imageUri.getPath());//filePath 图片地址/
-        Log.i(TAG,"图片地址为："+imageUri.getPath());
+        File file = new File(imageUri1.getPath());//filePath 图片地址/
+        Log.i(TAG,"图片地址为："+imageUri1.getPath());
         MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
         RequestBody imageBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
         builder.addFormDataPart("file", file.getName(), imageBody);
@@ -193,13 +194,13 @@ public class IdentifyIDActivity extends AppCompatActivity {
                                e.printStackTrace();
                            }
                            if (Build.VERSION.SDK_INT < 24) {
-                               imageUri = Uri.fromFile(outputImage);
+                               imageUri1 = Uri.fromFile(outputImage);
                            } else {
-                               imageUri = FileProvider.getUriForFile(IdentifyIDActivity.this, "com.example.administrator.littletortoisetortoise.fileprovider", outputImage);
+                               imageUri1 = FileProvider.getUriForFile(IdentifyIDActivity.this, "com.example.administrator.littletortoisetortoise.fileprovider", outputImage);
                            }
                            // 启动相机程序
                            Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-                           intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+                           intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri1);
                            startActivityForResult(intent, type==1?TAKE_PHOTO_FRONT:TAKE_PHOTO_BACK);
                            break;
 
@@ -250,7 +251,7 @@ public class IdentifyIDActivity extends AppCompatActivity {
                 if (resultCode == RESULT_OK) {
                     try {
                         // 将拍摄的照片显示出来
-                        Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));
+                        Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri1));
                         iv_id_front.setImageBitmap(bitmap);
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -261,7 +262,7 @@ public class IdentifyIDActivity extends AppCompatActivity {
                 if (resultCode == RESULT_OK) {
                     try {
                         // 将拍摄的照片显示出来
-                        Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));
+                        Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri1));
                         iv_id_back.setImageBitmap(bitmap);
                     } catch (Exception e) {
                         e.printStackTrace();
