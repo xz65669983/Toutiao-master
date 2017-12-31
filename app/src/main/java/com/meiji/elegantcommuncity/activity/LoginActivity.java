@@ -1,17 +1,19 @@
 package com.meiji.elegantcommuncity.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
-
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.meiji.elegantcommuncity.R;
 import com.meiji.elegantcommuncity.model.User;
+import com.meiji.elegantcommuncity.model.UserModel;
 import com.meiji.elegantcommuncity.retrofit.MyRetrofit;
 import com.meiji.elegantcommuncity.retrofit.UserService;
 import com.meiji.elegantcommuncity.util.UserInfoUtil;
@@ -63,7 +65,10 @@ public class LoginActivity extends AppCompatActivity {
         User user=new User();
         user.setUserAcc(login_phone.getText().toString());
         user.setPwd(login_password.getText().toString());
-        Call<ResponseBody> call = userService.login(user);
+
+        UserModel userModel=new UserModel();
+        userModel.setUser(user);
+        Call<ResponseBody> call = userService.login(userModel);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -72,12 +77,14 @@ public class LoginActivity extends AppCompatActivity {
                     Log.i(TAG,"接收到的信息为："+respond);
                     JsonElement je = new JsonParser().parse(respond);
                     String resultCode = je.getAsJsonObject().get("resultCode").toString();
-                    if(resultCode.contentEquals("0000")){
+                    if(resultCode.contentEquals("\"0000\"")){
                         //登录成功
                         String token = je.getAsJsonObject().get("token").toString();
+                        String replaceToken = token.replace("\"", "");
+                        Log.i(TAG,"转换后的TOKEN："+replaceToken);
 
                         //保存Token
-                        UserInfoUtil.getInstance().saveToken(token);
+                        UserInfoUtil.getInstance().saveToken(replaceToken);
                         //保存用户名
                         UserInfoUtil.getInstance().saveUserName(login_phone.getText().toString());
 
@@ -86,7 +93,22 @@ public class LoginActivity extends AppCompatActivity {
                     }else {
                         //登陆失败
                         String resultMessage = je.getAsJsonObject().get("resultMessage").toString();
-                        Toast.makeText(LoginActivity.this, "登陆失败,"+resultMessage, Toast.LENGTH_LONG).show();
+
+                        AlertDialog.Builder customizeDialog =
+                                new AlertDialog.Builder(LoginActivity.this);
+
+                        customizeDialog.setTitle("登录失败")
+                                .setMessage(resultMessage)
+                                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                                    }
+                                })
+                                .show();
+
+
                     }
                 } catch (IOException e) {
                     e.printStackTrace();

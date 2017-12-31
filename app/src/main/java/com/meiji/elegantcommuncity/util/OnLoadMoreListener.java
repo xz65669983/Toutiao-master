@@ -29,9 +29,9 @@ public abstract class OnLoadMoreListener extends RecyclerView.OnScrollListener {
             Log.e("OnLoadMoreListener", "The OnLoadMoreListener only support LinearLayoutManager");
             return;
         }
-        Log.e(TAG,"lastItemCount:"+lastItemCount);
-        Log.e(TAG,"itemCount:"+itemCount);
-        Log.e(TAG,"lastPosition"+lastPosition);
+//        Log.e(TAG,"lastItemCount:"+lastItemCount);
+//        Log.e(TAG,"itemCount:"+itemCount);
+//        Log.e(TAG,"lastPosition"+lastPosition);
 
         if (lastItemCount != itemCount && lastPosition == itemCount - 1) {
             lastItemCount = itemCount;

@@ -61,7 +61,7 @@ public class UserDetailsActivity extends AppCompatActivity {
                     String respond = response.body().string();
                     JsonElement je = new JsonParser().parse(respond);
                     String resultCode = je.getAsJsonObject().get("resultCode").toString();
-                    if("0000".equals(resultCode)){
+                    if("\"0000\"".equals(resultCode)){
                         Log.i(TAG,"登出成功");
                     }
                 } catch (IOException e) {
@@ -82,15 +82,6 @@ public class UserDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spuser_details);
         ButterKnife.bind(this);
-
-        Observable<Object> observable = Observable.create(new ObservableOnSubscribe<Object>() {
-            @Override
-            public void subscribe(ObservableEmitter<Object> e) throws Exception {
-
-            }
-        });
-
-
 
     }
 }
