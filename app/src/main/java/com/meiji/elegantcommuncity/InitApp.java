@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.multidex.MultiDexApplication;
 import android.support.v7.app.AppCompatDelegate;
 
+import com.lljjcoder.style.citypickerview.CityPickerView;
 import com.meiji.elegantcommuncity.util.SettingUtil;
 
 import java.util.Calendar;
@@ -20,6 +21,12 @@ public class InitApp extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
         AppContext = getApplicationContext();
+
+
+        /**
+         * 预先加载仿iOS滚轮实现的全部数据
+         */
+        CityPickerView.getInstance().init(this);
 
         initTheme();
 

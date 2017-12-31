@@ -131,4 +131,10 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
 
     compile 'com.squareup.picasso:picasso:2.5.2'
+    //时间控件
+    compile 'com.feezu.liuli:timeselector:1.1.3+'
+    //地点选择控件
+    compile 'liji.library.dev:citypickerview:3.0.1'
+
+
 }

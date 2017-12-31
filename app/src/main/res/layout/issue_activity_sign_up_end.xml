@@ -33,6 +33,7 @@
           	android:layout_marginRight="@dimen/margin_space">
            
            <TextView
+			   android:id="@+id/tv_end_activity_time"
                android:layout_marginLeft="5dip"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"

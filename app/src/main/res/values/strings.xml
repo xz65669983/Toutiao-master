@@ -158,6 +158,8 @@
     <string name="revise_password">修改密码</string>
     <string name="user_save">保存</string>
     <string name="log_out">退出登录</string>
+
+    <string name="issue">发布</string>
     <string-array name="user_sex_name">
         <item>保密</item>
         <item>男</item>
