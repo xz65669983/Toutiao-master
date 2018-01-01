@@ -11,6 +11,6 @@ import retrofit2.http.Path;
 
 public interface RetrofitImageAPI {
 
-    @GET("elegant/files/{user_acc}portrait{uuid}.jpg")
-    Observable<ResponseBody> getImageDetails(@Path("user_acc") String userAcc, @Path("uuid")String uuid );
+    @GET("elegant/files/{filename}")
+    Observable<ResponseBody> getImageDetails(@Path("filename") String filename);
 }

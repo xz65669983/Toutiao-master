@@ -20,6 +20,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.meiji.elegantcommuncity.EventBus.LoginEvent;
+import com.meiji.elegantcommuncity.EventBus.LogoutEvent;
 import com.meiji.elegantcommuncity.MainActivity;
 import com.meiji.elegantcommuncity.R;
 import com.meiji.elegantcommuncity.Register;
@@ -29,11 +31,17 @@ import com.meiji.elegantcommuncity.bean.media.MediaChannelBean;
 import com.meiji.elegantcommuncity.constant.Fragmentid;
 import com.meiji.elegantcommuncity.database.dao.MediaChannelDao;
 import com.meiji.elegantcommuncity.interfaces.IOnItemLongClickListener;
+import com.meiji.elegantcommuncity.model.User;
 import com.meiji.elegantcommuncity.retrofit.RetrofitImageAPI;
 import com.meiji.elegantcommuncity.retrofit.RxRetrofit;
 import com.meiji.elegantcommuncity.util.SettingUtil;
+import com.meiji.elegantcommuncity.util.UserInfoUtil;
 import com.trello.rxlifecycle2.android.FragmentEvent;
 import com.trello.rxlifecycle2.components.support.RxFragment;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.InputStream;
 import java.util.List;
@@ -54,6 +62,7 @@ import me.drakeet.multitype.MultiTypeAdapter;
 import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
 
+import static com.meiji.elegantcommuncity.R.id.login_password;
 import static com.meiji.elegantcommuncity.R.id.recycler_view;
 
 /**
@@ -79,23 +88,76 @@ public class PersonalCenterFragment extends RxFragment {
         return instance;
     }
 
-    private FragmentActivity mactivity;
     @BindView(R.id.nickname_txtv)
     public TextView tv_nickname;
 
     @OnClick(R.id.account_rlayout)
     public void accountManger() {
-        Intent intent = new Intent(mactivity, UserDetailsActivity.class);
+        Intent intent = new Intent(getContext(), UserDetailsActivity.class);
         startActivity(intent);
     }
+
     @BindView(R.id.head_mimgv)
     ImageView head_mimgv;
 
     @OnClick(R.id.head_mimgv)
     public void clicktouxiang() {
+
+
+    }
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //当登录完成时 页面你需要修改
+        EventBus.getDefault().register(this);
+
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_personal_informantion, container, false);
+        ButterKnife.bind(this, view);
+        UserInfoUtil instance = UserInfoUtil.getInstance();
+        String token = instance.getToken();
+        if (token == null || token.contentEquals("")) {
+            //未登录
+            handleLogout();
+        } else {
+            //已登录
+            hanldeLogIn();
+        }
+
+        return view;
+
+    }
+
+    private void handleLogout() {
+        head_mimgv.setImageResource(R.mipmap.person_default_head);
+        tv_nickname.setText("点击此处登录");
+        tv_nickname.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void hanldeLogIn() {
+        tv_nickname.setOnClickListener(null);
+        tv_nickname.setText("您好:" + UserInfoUtil.getInstance().getNickName());
+        getheadImage();
+    }
+
+
+    private void getheadImage() {
         Retrofit rxRetrofit = RxRetrofit.getRxRetrofitInstance();
-        RetrofitImageAPI imageAPI = rxRetrofit.create   (RetrofitImageAPI.class);
-        imageAPI.getImageDetails("emma", "0fdd30a6525833bb8da29829ada65329")
+        RetrofitImageAPI imageAPI = rxRetrofit.create(RetrofitImageAPI.class);
+        imageAPI.getImageDetails(UserInfoUtil.getInstance().getPortraitFilename())
                 .subscribeOn(Schedulers.io())
                 .map(new Function<ResponseBody, Bitmap>() {
                     @Override
@@ -113,40 +175,9 @@ public class PersonalCenterFragment extends RxFragment {
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        Log.i(TAG,"网络连接异常");
+                        Log.i(TAG, "网络连接异常");
                     }
                 });
-
-    }
-
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mactivity = getActivity();
-
-    }
-
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_personal_informantion, container, false);
-        ButterKnife.bind(this, view);
-        tv_nickname.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MainActivity mactivity = (MainActivity) PersonalCenterFragment.this.mactivity;
-                if (mactivity.islogin) {
-                    return;
-                } else {
-                    Intent intent = new Intent(mactivity, LoginActivity.class);
-                    startActivityForResult(intent, Fragmentid.PersonalCenterFragment);
-                }
-
-            }
-        });
-        return view;
-
     }
 
 
@@ -163,5 +194,24 @@ public class PersonalCenterFragment extends RxFragment {
         if (instance != null) {
             instance = null;
         }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onLoginEvent(LoginEvent event) {
+        hanldeLogIn();
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onLogoutEvent(LogoutEvent logoutEvent){
+        handleLogout();
+    }
+
+
+    @Override
+    public void onDestroy() {
+        EventBus.getDefault().unregister(this);
+        super.onDestroy();
+
+
     }
 }

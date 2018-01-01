@@ -118,14 +118,21 @@
             android:layout_alignParentTop="true" />
         <View style="@style/separator_line" />
        <!--详细地址-->
-    <EditText
-        android:id="@+id/et_mian_address"
-        android:layout_marginLeft="@dimen/margin_space"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_row"
-        android:background="@drawable/view_bg_clickable_selector"
-        android:textSize="@dimen/font_size_normal"
-        android:hint="@string/main_address"/>
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="@dimen/height_row"
+       android:background="@drawable/view_bg_clickable_selector"
+       android:orientation="horizontal">
+       <EditText
+           android:id="@+id/et_mian_address"
+           android:layout_marginLeft="@dimen/margin_space"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:background="@drawable/view_bg_clickable_selector"
+           android:textSize="@dimen/font_size_normal"
+           android:hint="@string/main_address"/>
+   </LinearLayout>
+
 
 
     <View style="@style/separator_line" />

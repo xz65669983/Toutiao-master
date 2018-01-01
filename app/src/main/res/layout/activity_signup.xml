@@ -59,7 +59,7 @@
                 <EditText android:id="@+id/input_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
+                    android:inputType="textVisiblePassword"
                     android:hint="账号" />
             </android.support.design.widget.TextInputLayout>
 
@@ -98,7 +98,6 @@
                 <EditText android:id="@+id/input_nick_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="number"
                     android:hint="昵称" />
             </android.support.design.widget.TextInputLayout>
 

@@ -1,6 +1,7 @@
 package com.meiji.elegantcommuncity.retrofit;
 
 
+import com.meiji.elegantcommuncity.model.MyResponseBody;
 import com.meiji.elegantcommuncity.model.issueactivity.IssueActivityModel;
 import io.reactivex.Observable;
 import okhttp3.ResponseBody;
@@ -16,6 +17,6 @@ public interface IssueActivityService {
 
     @POST("elegant/activity/publishActivity")
     @Headers({"Content-Type: application/json","Accept: application/json"})//需要添加头
-    Observable<ResponseBody> issueActivity(@Body IssueActivityModel issueActivityModel);
-
+    //Observable<ResponseBody> issueActivity(@Body IssueActivityModel issueActivityModel);
+    Observable<MyResponseBody> issueActivity(@Body IssueActivityModel issueActivityModel);
 }

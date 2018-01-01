@@ -49,8 +49,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private int position;
     private NavigationView nav_view;
     private DrawerLayout drawer_layout;
-//是否登录
-    public boolean islogin=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -10,9 +10,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
 import com.lljjcoder.Interface.OnCityItemClickListener;
 import com.lljjcoder.bean.CityBean;
 import com.lljjcoder.bean.DistrictBean;
@@ -22,27 +19,23 @@ import com.lljjcoder.style.citylist.Toast.ToastUtils;
 import com.lljjcoder.style.citypickerview.CityPickerView;
 import com.meiji.elegantcommuncity.InitApp;
 import com.meiji.elegantcommuncity.R;
-import com.meiji.elegantcommuncity.activity.LoginActivity;
+import com.meiji.elegantcommuncity.model.MyResponseBody;
 import com.meiji.elegantcommuncity.model.issueactivity.ActivityDetialsModel;
 import com.meiji.elegantcommuncity.model.issueactivity.IssueActivityModel;
 import com.meiji.elegantcommuncity.retrofit.IssueActivityService;
-import com.meiji.elegantcommuncity.retrofit.RxRetrofit;
 import com.meiji.elegantcommuncity.retrofit.RxRetrofitWithGson;
 import com.meiji.elegantcommuncity.util.UserInfoUtil;
-
 import org.feezu.liuli.timeselector.TimeSelector;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
-import okhttp3.ResponseBody;
+
 
 /**
  * Created by zhangzhengchao on 2017/12/25.
@@ -149,18 +142,20 @@ public class IssueAvtivityFragment extends Fragment {
         issueActivityService.issueActivity(issueActivityModel)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<ResponseBody>() {
+                .subscribe(new Consumer<MyResponseBody>() {
                     @Override
-                    public void accept(ResponseBody responseBody) throws Exception {
-                        JsonElement je = new JsonParser().parse(responseBody.toString());
-                        String resultCode = je.getAsJsonObject().get("resultCode").toString();
+                    public void accept(MyResponseBody responseBody) throws Exception {
+//                        JsonElement je = new JsonParser().parse(responseBody.toString());
+//                        String resultCode = je.getAsJsonObject().get("resultCode").toString();
+                        String resultCode = responseBody.getResultCode();
                         if(resultCode.contentEquals("0000")){
                             //发布活动成功
                             Toast.makeText(InitApp.AppContext, "发布活动成功", Toast.LENGTH_LONG).show();
 
                         }else {
                             //登陆失败
-                            String resultMessage = je.getAsJsonObject().get("resultMessage").toString();
+                            /*String resultMessage = je.getAsJsonObject().get("resultMessage").toString();*/
+                            String resultMessage = responseBody.getResultMessage();
                             Toast.makeText(InitApp.AppContext, "发布失败,"+resultMessage, Toast.LENGTH_LONG).show();
                         }
                     }
@@ -227,6 +222,7 @@ public class IssueAvtivityFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_issue_activity, container, false);
         ButterKnife.bind(this, view);
         return view;

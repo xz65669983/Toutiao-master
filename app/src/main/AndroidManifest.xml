@@ -37,6 +37,7 @@
             android:name="com.meiji.elegantcommuncity.MainActivity"
             android:configChanges="orientation|screenSize|uiMode"
             android:label="@string/main_name"
+            android:windowSoftInputMode="adjustPan|stateHidden"
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity

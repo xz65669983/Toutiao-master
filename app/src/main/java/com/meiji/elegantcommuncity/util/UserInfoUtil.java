@@ -47,4 +47,91 @@ public class UserInfoUtil {
         return tokentils.getString("userName", "");
     }
 
+    public void saveVerifyType(Integer verifyType){
+        SharedPreferences.Editor edit = tokentils.edit();
+        edit.putInt("verifyType",verifyType);
+        edit.commit();
+
+    }
+    public Integer getVerifyType(){
+       return tokentils.getInt("verifyType", 0);
+    }
+
+    public void savepPortraitFilename(String portraitFilename){
+        SharedPreferences.Editor edit = tokentils.edit();
+        edit.putString("portraitFilename",portraitFilename);
+        edit.commit();
+
+    }
+    public String getPortraitFilename(){
+        return tokentils.getString("portraitFilename", "");
+    }
+
+    public void saveEmail(String email){
+        SharedPreferences.Editor edit = tokentils.edit();
+        edit.putString("email",email);
+        edit.commit();
+    }
+    public String getEmail(){
+        return tokentils.getString("email", "");
+    }
+
+    public void saveMale(Integer male){
+        SharedPreferences.Editor edit = tokentils.edit();
+        edit.putInt("male",male);
+        edit.commit();
+    }
+    public Integer getMale(){
+        return tokentils.getInt("male", 0);
+    }
+
+
+    public void saveNickName(String nickName){
+        SharedPreferences.Editor edit = tokentils.edit();
+        edit.putString("nickName",nickName);
+        edit.commit();
+
+    }
+    public String getNickName(){
+        return tokentils.getString("nickName", "");
+    }
+
+    public void savePhoneNumber(String phoneNumber){
+        SharedPreferences.Editor edit = tokentils.edit();
+        edit.putString("phoneNumber",phoneNumber);
+        edit.commit();
+
+    }
+    public String getPhoneNumber(){
+        return tokentils.getString("phoneNumber", "");
+    }
+
+    public void savePwd(String pwd){
+        SharedPreferences.Editor edit = tokentils.edit();
+        edit.putString("pwd",pwd);
+        edit.commit();
+    }
+    public String getPwd(){
+        return tokentils.getString("pwd", "");
+    }
+
+    public void saveUserAcc(String userAcc){
+        SharedPreferences.Editor edit = tokentils.edit();
+        edit.putString("userAcc",userAcc);
+        edit.commit();
+    }
+    public String getUserAcc(){
+        return tokentils.getString("userAcc", "");
+    }
+
+    public void saveUserGrade(Integer userGrade){
+        SharedPreferences.Editor edit = tokentils.edit();
+        edit.putInt("userGrade",userGrade);
+        edit.commit();
+
+    }
+    public Integer geUserGrade(){
+        return tokentils.getInt("userGrade", 0);
+    }
+
 }

@@ -19,6 +19,16 @@ public class User {
     private Integer  verifyType;
     private Integer  userGrade;
 
+    private String portraitFilename;
+
+    public String getPortraitFilename() {
+        return portraitFilename;
+    }
+
+    public void setPortraitFilename(String portraitFilename) {
+        this.portraitFilename = portraitFilename;
+    }
+
     public String getUserAcc() {
         return userAcc;
     }
