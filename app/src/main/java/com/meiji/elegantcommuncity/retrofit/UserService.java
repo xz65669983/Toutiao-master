@@ -8,7 +8,10 @@ import com.meiji.elegantcommuncity.model.UserModel;
 import com.meiji.elegantcommuncity.model.login.LoginResponse;
 
 import java.util.List;
+
+import io.reactivex.Observable;
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.adapter.rxjava2.Result;
@@ -24,18 +27,25 @@ import retrofit2.http.Part;
 
 public interface UserService {
     @POST("elegant/user/login")
-    @Headers({"Content-Type: application/json","Accept: application/json"})//需要添加头
+    @Headers({"Content-Type: application/json", "Accept: application/json"})
+//需要添加头
     Call<LoginResponse> login(@Body UserModel userModel);
 
     @POST("elegant/user/register")
-    @Headers({"Content-Type: application/json","Accept: application/json"})//需要添加头
+    @Headers({"Content-Type: application/json", "Accept: application/json"})
+//需要添加头
     Call<ResponseBody> signUp(@Body RegisterModel registerModel);
 
     @POST("elegant/user/logout")
-    @Headers({"Content-Type: application/json","Accept: application/json"})//需要添加头
+    @Headers({"Content-Type: application/json", "Accept: application/json"})
+//需要添加头
     Call<MyResponseBody> logOut(@Body UserModel userModel);
-    @POST("elegant/multiFileUpload")
+
+    @POST("elegant/user/identificationCert")
     @Multipart
-    Call<ResponseBody> upLoadCertificateId(@Part List<MultipartBody.Part> partList);
+    Observable<ResponseBody> upLoadCertificateId(@Part("idNo") RequestBody idNo,
+                                                 @Part("token") RequestBody token,
+                                                 @Part("userAcc") RequestBody userAcc,
+                                                 @Part List<MultipartBody.Part> partList);
 
 }

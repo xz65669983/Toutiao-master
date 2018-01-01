@@ -47,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.login_password)
     EditText login_password;
 
+
     @OnClick(R.id.forget_password)
     public void forgetPassword() {
         Intent intent = new Intent(this, FindPasswordActivity.class);

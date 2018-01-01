@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import com.meiji.elegantcommuncity.MainActivity;
 import com.meiji.elegantcommuncity.R;
 import com.meiji.elegantcommuncity.constant.ErrorCode;
 import com.meiji.elegantcommuncity.model.Header;
@@ -38,6 +39,11 @@ public class SignupActivity extends AppCompatActivity {
     public void back() {
         finish();
     }
+    @OnClick(R.id.link_login)
+    public  void temperary(){
+
+    }
+
 
     @OnClick(R.id.btn_signup)
     public void finsihSignup() {
@@ -87,7 +93,7 @@ public class SignupActivity extends AppCompatActivity {
                     Log.i(TAG, "resultCode:"+resultCode);
                     if(resultCode.contains("0000")){
                         Toast.makeText(SignupActivity.this,"注册成功",Toast.LENGTH_LONG).show();
-                        Intent intent=new Intent(SignupActivity.this,IdentifyIDActivity.class);
+                        Intent intent=new Intent(SignupActivity.this,MainActivity.class);
                         startActivity(intent);
                         finish();
                     }else {

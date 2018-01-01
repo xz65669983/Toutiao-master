@@ -71,10 +71,12 @@ public class UserDetailsActivity extends AppCompatActivity {
     @BindView(R.id.city_txtv)
     TextView tvCity;
 
+    //占时修改为认证学历接口
     @OnClick(R.id.revise_password_txt)
     public void revisePassword() {
-        Intent intent = new Intent(UserDetailsActivity.this, RevisePasswordActivity.class);
+        Intent intent=new Intent(UserDetailsActivity.this,IdentifyIDActivity.class);
         startActivity(intent);
+        finish();
     }
 
     @OnClick(R.id.btn_save)
