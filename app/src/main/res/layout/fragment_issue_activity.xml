@@ -46,6 +46,7 @@
                 android:src="@drawable/add_topic" />
 
         </RelativeLayout>
+
         <View style="@style/separator_line" />
         <!--时间-->
         <RelativeLayout
@@ -76,6 +77,7 @@
                 android:gravity="center_vertical"
                 android:hint="开始时间"
                 android:textSize="@dimen/font_size_normal" />
+
             <TextView
                 android:id="@+id/time_to"
                 android:layout_marginLeft="8dp"
@@ -116,26 +118,27 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true" />
+
         <View style="@style/separator_line" />
-       <!--详细地址-->
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="@dimen/height_row"
-       android:background="@drawable/view_bg_clickable_selector"
-       android:orientation="horizontal">
-       <EditText
-           android:id="@+id/et_mian_address"
-           android:layout_marginLeft="@dimen/margin_space"
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           android:background="@drawable/view_bg_clickable_selector"
-           android:textSize="@dimen/font_size_normal"
-           android:hint="@string/main_address"/>
-   </LinearLayout>
+        <!--详细地址-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_row"
+            android:background="@drawable/view_bg_clickable_selector"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/et_mian_address"
+                android:layout_marginLeft="@dimen/margin_space"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/view_bg_clickable_selector"
+                android:textSize="@dimen/font_size_normal"
+                android:hint="@string/main_address" />
+        </LinearLayout>
 
 
-
-    <View style="@style/separator_line" />
+        <View style="@style/separator_line" />
 
         <!-- 费用-->
         <include
@@ -145,16 +148,18 @@
             android:layout_height="@dimen/height_row" />
 
         <View style="@style/separator_line" />
+
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="130dp">
+            android:layout_height="100dp">
+
             <EditText
                 android:id="@+id/et_activity_content"
                 android:background="@null"
                 android:layout_margin="@dimen/margin_space"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="详情描述"/>
+                android:hint="详情描述" />
         </ScrollView>
 
         <View style="@style/separator_line" />
@@ -164,13 +169,15 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_row"
             android:orientation="horizontal">
+
             <TextView
                 android:background="@null"
                 android:layout_marginLeft="@dimen/margin_space"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:text="咨询电话"/>
+                android:text="咨询电话" />
+
             <EditText
                 android:id="@+id/et_mobile_phone"
                 android:textSize="@dimen/font_size_normal"
@@ -180,8 +187,7 @@
                 android:gravity="right|center_vertical"
                 android:hint="手机号/座机号（区号-座机号）"
                 android:ems="10"
-                android:inputType="number"
-                />
+                android:inputType="number" />
 
         </LinearLayout>
 
@@ -196,17 +202,18 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true" />
 
-    <Button
-        android:id="@+id/btn_issue"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dip"
-        android:background="#ff0080"
-        android:gravity="center"
-        android:text="@string/issue"
-        android:textColor="@color/white"
+        <Button
+            android:id="@+id/btn_issue"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dip"
+            android:background="#ff0080"
+            android:gravity="center"
+            android:text="@string/issue"
+            android:textColor="@color/white"
 
-        />
+            />
 
-</LinearLayout>
+    </LinearLayout>
+
